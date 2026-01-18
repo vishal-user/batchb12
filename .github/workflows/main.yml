@@ -39,6 +39,6 @@ jobs:
           script: |
             sudo rm -rf /var/www/html/*
             sudo cp -r /home/ubuntu/app/* /var/www/html/
-          l
+          
 
 
