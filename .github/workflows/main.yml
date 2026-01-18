@@ -25,7 +25,17 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          port: ${{ secrets.EC2_PORT }}
+          port: 22
+          source: ./
+          target: /home/ubuntu/
+
+        name: ssh and copy files to /var/www/html 
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
           script: |
-             cp /home/ubuntu/* /var/www/html         
+            cp /home/ubuntu/* /var/www/html
 
