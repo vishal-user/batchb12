@@ -26,16 +26,19 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
-          source: ./
-          target: /home/ubuntu/
+          source: "./"
+          target: "/home/ubuntu/app"
 
-        name: ssh and copy files to /var/www/html 
-        uses: appleboy/scp-action@v1
+      - name: Move files to /var/www/html
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            cp /home/ubuntu/* /var/www/html
+            sudo rm -rf /var/www/html/*
+            sudo cp -r /home/ubuntu/index.html/* /var/www/html/
+            sudo chown -R www-data:www-data /var/www/html
+
 
