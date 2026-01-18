@@ -1,29 +1,31 @@
-name : Deploy to Ec2
+name: Deploy to Ec2
 
 on:
   push:
     branches:
-       - main
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - name: checkout code on runner machine
-        uses: actions/checkout@v4
-                                     
-      - name: run some commands
-         run: |
-           ls -al
-           whoami
-           pwd
 
-      - name: copy files to EC2  
+    steps:
+      - name: Checkout code on runner machine
+        uses: actions/checkout@v4
+
+      - name: Run some commands
+        run: |
+          ls -al
+          whoami
+          pwd
+
+      - name: Copy files to EC2
         uses: appleboy/scp-action@v1
         with:
-          host: ${{ secrets.EC2_HOSt }}
+          host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
-          password: ${{ secrets.EC2_SSH_KEY }}
-          port: ${{ secrets.port }}
-          source: ./
-          target: /root/home/ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: ${{ secrets.EC2_PORT }}
+          source: "./"
+          target: "/home/ubuntu"
+
