@@ -26,6 +26,6 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           port: ${{ secrets.EC2_PORT }}
-          source: "./"
-          target: "/home/ubuntu"
+          script: |
+             cp /home/ubuntu/* /var/www/html         
 
