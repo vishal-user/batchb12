@@ -19,4 +19,4 @@ jobs:
           password: ${{ secrets.password }}
           port: ${{ secrets.port }}
           source: ./
-          target: /home/ubuntu
+          target: /root/home/ubuntu
