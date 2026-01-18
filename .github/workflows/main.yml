@@ -16,7 +16,7 @@ jobs:
         with:
           host: ${{ secrets.EC2_HOSt }}
           username: ${{ secrets.EC2_USERNAME }}
-          password: ${{ secrets.password }}
+          password: ${{ secrets.EC2_SSH_KEY }}
           port: ${{ secrets.port }}
           source: ./
           target: /root/home/ubuntu
